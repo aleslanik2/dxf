@@ -165,4 +165,49 @@ class DXF {
 
     await fileHandle.close();
   }
+  
+  String saveToMemory(){
+
+    StringBuffer fileHandle= StringBuffer();
+
+    /// Header Section
+    _headerSection.groupCodes.forEach((element) {
+      fileHandle.writeln(element.code.toString().padLeft(3, ' '));
+      fileHandle.writeln(element.value);
+    });
+
+    /// Classes Section
+    _classesSection.groupCodes.forEach((element) {
+      fileHandle.writeln(element.code.toString().padLeft(3, ' '));
+      fileHandle.writeln(element.value);
+    });
+
+    /// Tables Section
+    _tablesSection.groupCodes.forEach((element) {
+      fileHandle.writeln(element.code.toString().padLeft(3, ' '));
+      fileHandle.writeln(element.value);
+    });
+
+    /// Blocks Section
+    _blocksSection.groupCodes.forEach((element) {
+      fileHandle.writeln(element.code.toString().padLeft(3, ' '));
+      fileHandle.writeln(element.value);
+    });
+
+    /// Entities Section
+    fileHandle.writeln(_entitiesSection.dxfString);
+
+    /// Objects Section
+    _objectsSection.groupCodes.forEach((element) {
+      fileHandle.writeln(element.code.toString().padLeft(3, ' '));
+      fileHandle.writeln(element.value);
+    });
+
+    /// EOF
+    fileHandle.writeln(0.toString().padLeft(3, ' '));
+    fileHandle.writeln('EOF');
+
+    fileHandle.toString();
+  }
+
 }
