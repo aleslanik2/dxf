@@ -207,7 +207,7 @@ class DXF {
     fileHandle.writeln(0.toString().padLeft(3, ' '));
     fileHandle.writeln('EOF');
 
-    fileHandle.toString();
+    return fileHandle.toString();
   }
 
 }
